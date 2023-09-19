@@ -29,38 +29,35 @@ def hybridsort(arr, start, end):
 
 
 def merge(arr, start, mid, end):
-    # create temporary arrays
+    # create temporary arrays, need only copy the left array, saves a bit on memory
     arr_left = []
-    arr_right = []
+
     for i in range(start, mid + 1):
         arr_left.append(arr[i])
 
-    for i in range(mid + 1, end + 1):
-        arr_right.append(arr[i])
-
     size_l = len(arr_left)
-    size_r = len(arr_right)
 
-    left_count = right_count = 0
+    left_count = 0
+    right_count = mid + 1
     arr_counter = start
 
-    while left_count < size_l and right_count < size_r:
-        if arr_left[left_count] == arr_right[right_count]:  # if both keys are equal, insert both at the same time
+    while left_count < size_l and right_count < end+1:
+        if arr_left[left_count] == arr[right_count]:  # if both keys are equal, insert both at the same time
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
 
-            arr[arr_counter] = arr_right[right_count]
+            arr[arr_counter] = arr[right_count]
             arr_counter += 1
             right_count += 1
 
-        elif arr_left[left_count] < arr_right[right_count]:
+        elif arr_left[left_count] < arr[right_count]:
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
 
         else:
-            arr[arr_counter] = arr_right[right_count]
+            arr[arr_counter] = arr[right_count]
             arr_counter += 1
             right_count += 1
 
@@ -71,9 +68,9 @@ def merge(arr, start, mid, end):
             arr_counter += 1
             left_count += 1
 
-    while right_count < size_r:
-        for i in range(right_count, size_r):
-            arr[arr_counter] = arr_right[i]
+    while right_count < end+1:
+        for i in range(right_count, end+1):
+            arr[arr_counter] = arr[i]
             arr_counter += 1
             right_count += 1
 
