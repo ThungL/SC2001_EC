@@ -89,3 +89,4 @@ for i in range(0, size_list):
     arr.append(key)
 hybridsort(arr, 0, size_list - 1)
 print(arr)
+print(key_comparisons)
