@@ -2,10 +2,9 @@ import array
 import random
 
 def generateRandomData(ArrSize, largestNum):
-    arr = [1]
-    for x in range(ArrSize-2):
-        arr.append(random.randint(0, largestNum))
-    arr.append(largestNum)
+    arr = []
+    for x in range(ArrSize):
+        arr.append(random.randint(1, largestNum))
     return arr
 
 
