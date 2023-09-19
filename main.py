@@ -1,5 +1,6 @@
 s = int(input("S: "))
 GLOBAL_THRESHOLD = s
+key_comparisons = 0
 
 
 def insertionsort(arr, start, end):
@@ -11,6 +12,7 @@ def insertionsort(arr, start, end):
 
         j = i - 1
         while j >= start and key < arr[j]:
+            key_comparisons += 1
             arr[j + 1] = arr[j]
             j -= 1
 
@@ -43,6 +45,7 @@ def merge(arr, start, mid, end):
 
     while left_count < size_l and right_count < end+1:
         if arr_left[left_count] == arr[right_count]:  # if both keys are equal, insert both at the same time
+            key_comparisons += 1
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
@@ -52,6 +55,7 @@ def merge(arr, start, mid, end):
             right_count += 1
 
         elif arr_left[left_count] < arr[right_count]:
+            key_comparisons += 1
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
