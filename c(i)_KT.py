@@ -1,9 +1,8 @@
 import random
 
-
 GLOBAL_THRESHOLD_S = 10
 key_comparisons = 0
-arraySize = [1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
+arraySize = [1000, 5000, 10000, 50000, 100000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
 arr2sort = []
 
 def generateRandomDatasets(array_size):
@@ -89,7 +88,7 @@ def merge(arr, start, mid, end):
             arr_counter += 1
             right_count += 1
 
-
+sList = []
 for i in arraySize:
     print("array size is :" + str(i))
     aveL = [0, 0, 0]
@@ -104,8 +103,6 @@ for i in arraySize:
     print("Average number of key comparisons is")
     print(ave)
     print("\n")
+    sList.append(ave)
 
-
-
-
-
+print(sList) #print out list of ave, list of array size can be seen at the start
