@@ -89,20 +89,29 @@ def merge(arr, start, mid, end):
             right_count += 1
 
 sList = []
+tList = []
 for i in arraySize:
     print("array size is :" + str(i))
     aveL = [0, 0, 0]
+    timeTakenList = [0, 0, 0]
     for j in range(3):
         key_comparisons = 0
         arr2sort = generateRandomDatasets(i)
+        start = time.time()
         hybridsort(arr2sort, 0, i - 1)
+        end = time.time()
+        timeTaken = end-start
         aveL[j] = key_comparisons
-        print("Key comparisons is : " + str(key_comparisons))
+        timeTakenList[j] = timeTaken
+        #print("Key comparisons is : " + str(key_comparisons))
 
     ave = (aveL[0] + aveL[1] + aveL[2]) / 3
-    print("Average number of key comparisons is")
-    print(ave)
-    print("\n")
+    aveTimeTaken = (timeTakenList[0] + timeTakenList[1] + timeTakenList[2]) / 3
+    #print("Average number of key comparisons is")
+    #print(ave)
+    #print("\n")
     sList.append(ave)
+    tList.append(aveTimeTaken)
 
 print(sList) #print out list of ave, list of array size can be seen at the start
+print(tList) #print out list of time taken ave
