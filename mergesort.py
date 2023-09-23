@@ -1,11 +1,10 @@
 def mergesort(arr, l, r):
-    mid = (l -r)//2
-    if (l-r <= 0):
-        return
-    elif (r-l > 1):
+    if (l < r):
+        mid = (l+r)//2
         mergesort(arr, l, mid)
         mergesort(arr, mid+1, r)
-    merge(arr, l, mid, r)
+
+        merge(arr, l, mid, r)
 
 
 def merge(arr, l, mid, r):
