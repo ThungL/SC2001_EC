@@ -10,7 +10,6 @@ def generateRandomDatasets(array_size, array_max):
 
 
 def insertionSort(arr):
-    # start = timer()
     for i in range(1, len(arr)):
  
         key = arr[i]
@@ -20,19 +19,14 @@ def insertionSort(arr):
                 arr[j + 1] = arr[j]
                 j -= 1
         arr[j + 1] = key
-    # end = timer()
-    # return (end-start)
 
 def mergesort(arr, l, r):
-    # start = timer()
     if (l < r):
         mid = (l+r)//2
         mergesort(arr, l, mid)
         mergesort(arr, mid+1, r)
 
         merge(arr, l, mid, r)
-    # end = timer()
-    # return (end - start)
 
 def merge(arr, start, mid, end):
     # create temporary arrays, need only copy the left array, saves a bit on memory
