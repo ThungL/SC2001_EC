@@ -3,7 +3,7 @@ import time
 
 GLOBAL_THRESHOLD_S = 74
 key_comparisons = 0
-arraySize = [1000, 5000, 10000, 50000, 100000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+arraySize = 10000000
 arr2sort = []
 
 def generateRandomDatasets(array_size):
@@ -42,8 +42,8 @@ def hybridsort(arr, start, end):
 def mergesort(arr, start, end):
     if start < end:
         mid = int((start+end)/2)
-        hybridsort(arr, start, mid)
-        hybridsort(arr, mid+1, end)
+        mergesort(arr, start, mid)
+        mergesort(arr, mid+1, end)
         merge(arr, start, mid, end)
 
 
@@ -101,7 +101,7 @@ MSList = []
 HStList = []
 MStList = []
 
-print("array size is :" + str(10000000))
+print("array size is :" + str(arraySize))
 HSaveL = [0, 0, 0, 0, 0]
 MSaveL = [0, 0, 0, 0, 0]
 HStimeTakenList = [0, 0, 0, 0, 0]
@@ -109,13 +109,13 @@ MStimeTakenList = [0, 0, 0, 0, 0]
 
 for j in range(5):
     key_comparisons = 0
-    arr2hybridsort = generateRandomDatasets(10000000)
+    arr2hybridsort = generateRandomDatasets(arraySize)
     arr2mergesort = arr2hybridsort.copy()
     print("Test" + str(j+1))
     #print(arr2hybridsort)
     #print("\n \n \n")
     HSstart = time.time()
-    hybridsort(arr2hybridsort, 0, (10000000 - 1))
+    hybridsort(arr2hybridsort, 0, (arraySize - 1))
     HSend = time.time()
     HStimeTaken = HSend-HSstart
     HSaveL[j] = key_comparisons
@@ -128,7 +128,7 @@ for j in range(5):
     # print("\n \n \n")
     key_comparisons = 0
     MSstart = time.time()
-    mergesort(arr2mergesort, 0, (10000000 - 1))
+    mergesort(arr2mergesort, 0, (arraySize - 1))
     MSend = time.time()
     MStimeTaken = MSend - MSstart
     MSaveL[j] = key_comparisons
