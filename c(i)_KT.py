@@ -55,7 +55,6 @@ def merge(arr, start, mid, end):
 
     while left_count < size_l and right_count < end+1:
         if arr_left[left_count] == arr[right_count]:  # if both keys are equal, insert both at the same time
-            key_comparisons += 1
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
@@ -65,7 +64,6 @@ def merge(arr, start, mid, end):
             right_count += 1
 
         elif arr_left[left_count] < arr[right_count]:
-            key_comparisons += 1
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
@@ -74,6 +72,7 @@ def merge(arr, start, mid, end):
             arr[arr_counter] = arr[right_count]
             arr_counter += 1
             right_count += 1
+        key_comparisons += 1
 
     # insert the remainder of the lists into the overall sorted list
     while left_count < size_l:
