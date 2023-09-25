@@ -1,4 +1,5 @@
 import random
+import time
 
 GLOBAL_THRESHOLD_S = 10
 key_comparisons = 0
@@ -8,24 +9,30 @@ arr2sort = []
 def generateRandomDatasets(array_size):
         arr = []
         for i in range(array_size):
-            arr.append(random.randint(1, 99999999))
+            arr.append(random.randint(1, array_size))
         return arr
+
 
 def insertionsort(arr, start, end):
     global key_comparisons
     if end - start <= 0:  # trivially sorted in this case
-        return
+        return 0
 
     for i in range(start + 1, end + 1):
         key = arr[i]  # key being inserted
 
         j = i - 1
-        while j >= start and key < arr[j]:
-            key_comparisons += 1
-            arr[j + 1] = arr[j]
-            j -= 1
+        while j >= start:
+            if key < arr[j]:
+                key_comparisons += 1
+                arr[j + 1] = arr[j]
+                j -= 1
+            else:
+                key_comparisons += 1
+                break
 
         arr[j + 1] = key
+
 
 
 def hybridsort(arr, start, end):
@@ -53,7 +60,7 @@ def merge(arr, start, mid, end):
     right_count = mid + 1
     arr_counter = start
 
-    while left_count < size_l and right_count < end+1:
+    while left_count < size_l and right_count < end + 1:
         if arr_left[left_count] == arr[right_count]:  # if both keys are equal, insert both at the same time
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
@@ -100,6 +107,7 @@ for i in arraySize:
         hybridsort(arr2sort, 0, i - 1)
         end = time.time()
         timeTaken = end-start
+        print(f"time taken : {timeTaken}")
         aveL[j] = key_comparisons
         timeTakenList[j] = timeTaken
         #print("Key comparisons is : " + str(key_comparisons))
