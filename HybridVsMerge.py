@@ -9,22 +9,26 @@ arr2sort = []
 def generateRandomDatasets(array_size):
         arr = []
         for i in range(array_size):
-            arr.append(random.randint(1, 99999999))
+            arr.append(random.randint(1, array_size))
         return arr
 
 def insertionsort(arr, start, end):
     global key_comparisons
     if end - start <= 0:  # trivially sorted in this case
-        return
+        return 0
 
     for i in range(start + 1, end + 1):
         key = arr[i]  # key being inserted
 
         j = i - 1
-        while j >= start and key < arr[j]:
-            key_comparisons += 1
-            arr[j + 1] = arr[j]
-            j -= 1
+        while j >= start:
+            if key < arr[j]:
+                key_comparisons += 1
+                arr[j + 1] = arr[j]
+                j -= 1
+            else:
+                key_comparisons += 1
+                break
 
         arr[j + 1] = key
 
@@ -63,7 +67,6 @@ def merge(arr, start, mid, end):
 
     while left_count < size_l and right_count < end+1:
         if arr_left[left_count] == arr[right_count]:  # if both keys are equal, insert both at the same time
-            key_comparisons += 1
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
@@ -73,7 +76,6 @@ def merge(arr, start, mid, end):
             right_count += 1
 
         elif arr_left[left_count] < arr[right_count]:
-            key_comparisons += 1
             arr[arr_counter] = arr_left[left_count]
             arr_counter += 1
             left_count += 1
@@ -82,6 +84,7 @@ def merge(arr, start, mid, end):
             arr[arr_counter] = arr[right_count]
             arr_counter += 1
             right_count += 1
+        key_comparisons += 1
 
     # insert the remainder of the lists into the overall sorted list
     while left_count < size_l:
